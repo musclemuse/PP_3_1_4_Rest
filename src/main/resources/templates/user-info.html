@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add user</title>
+</head>
+<body>
+<h2>Add user</h2>
+<div>
+    <form th:action="@{saveUser}" th:object="${user}" method="post">
+        <fieldset>
+            <p>
+                <label th:for="username">Name</label>
+                <input type="text" name="username" th:id="username" th:value="${user.getUsername()}">
+            </p>
+            <p>
+                <label th:for="profession">Profession</label>
+                <input type="text" name="profession" th:id="profession" th:value="${user.getProfession()}"><br/>
+            </p>
+            <p>
+                <label th:for="age">age</label>
+                <input type="text" name="age" th:id="age" th:value="${user.getAge()}"><br/>
+            </p>
+            <p>
+                <label th:for="password">password</label>
+                <input type="text" name="password" th:id="password" th:value="${user.getPassword()}"><br/>
+            </p>
+            <p>
+                <input type="submit" value="OK"/>
+            </p>
+        </fieldset>
+    </form>
+    <br/>
+    <form th:action="@{/index}">
+        <button type="submit">Back to list</button>
+    </form>
+    <form th:action="@{'/logout'}">
+        <input type="submit" value="Logout"/>
+    </form>
+</div>
+</body>
+</html>

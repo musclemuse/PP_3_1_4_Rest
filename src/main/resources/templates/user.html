@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example</title>
+<title>Spring Security Example</title>
 </head>
+
 <body>
 <h1>User, welcome spring boot security page!</h1>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name: </th>
+            <th>Profession: </th>
+            <th>Age: </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${user.getUsername()}">Username</td>
+            <td th:text="${user.getProfession()}">Profession</td>
+            <td th:text="${user.getAge()}">Age</td>
+        </tr>
+        </tbody>
+    </table>
 
-
+    <form th:action="@{'/logout'}">
+        <input type="submit" value="Logout"/>
+    </form>
+</div>
 </body>
 </html>
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>ID</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Profession</th>-->
+<!--        <th>Age</th>-->
+<!--    </tr>-->
+
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--        <td th:text="${user.getId()}">ID</td>-->
+<!--        <td th:text="${user.getUsername()}">Name</td>-->
+<!--        <td th:text="${user.getProfession()}">Profession</td>-->
+<!--        <td th:text="${user.getAge()()}">Age</td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->

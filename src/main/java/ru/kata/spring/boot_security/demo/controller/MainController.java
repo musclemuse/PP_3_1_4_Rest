@@ -7,35 +7,53 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
+
+import java.security.Principal;
 
 
 @Controller
-@RequestMapping(value = "/")
-public class UserController {
+//@RequestMapping(value = "/admin")
+public class MainController {
 
-    private UserService userService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
-    public void setUserService(UserService userService) {
+    public MainController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
-    @GetMapping(value = "index")
+    @GetMapping("/user")
+    public String userInfo(Principal principal, Model model) {
+        User user = userService.getUserByUsername(principal.getName());
+        model.addAttribute("user", user);
+        return "user" ;
+    }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "redirect:/index";
+    }
+
+    @GetMapping(value = "/index")
     public String allUsers(Model model) {
         model.addAttribute("users", userService.listOfAllUsers());
         return "index";
     }
 
-    @RequestMapping(value = "addNewUser")
+    @RequestMapping(value = "/addNewUser")
     public String addNewUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "user-info";
     }
 
-    @RequestMapping(value = "saveUser")
+    @RequestMapping(value = "/saveUser")
     public String saveUser(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/index";
@@ -44,8 +62,8 @@ public class UserController {
 
     @RequestMapping(value = "updateInfo")
     public String updateUser(@RequestParam("id") int id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
+        model.addAttribute("roles", roleService.getAllRoles());
+        model.addAttribute("user", userService.getUserById(id));
         return "user-update";
     }
 

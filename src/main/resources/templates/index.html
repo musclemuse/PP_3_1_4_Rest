@@ -1,11 +1,55 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Spring Security Example</title>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        table th, table td {
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
 
+<div>
+    <h2>Users</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Profession</th>
+            <th>Age</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getProfession()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td>
+                <form th:action="@{updateInfo(id=${user.id})}" th:object="${user}">
+                    <!--                            Скрытое поле id-->
+                    <input type="hidden" name="id" th:value="${user.getId()}">
+                    <button type="submit">Edit</button>
+                </form>
 
+                <form th:action="@{deleteUser(id=${user.id})}" th:object="${user}">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <form th:action="@{'/logout'}">
+        <input type="submit" value="Logout"/>
+    </form>
+
+    <p><a href="addNewUser">Create user</a></p>
+</div>
 </body>
 </html>
