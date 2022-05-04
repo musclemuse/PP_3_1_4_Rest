@@ -12,15 +12,19 @@
         <fieldset>
             <p>
                 <label th:for="username">Name</label>
-                <input type="text" name="username" th:id="username" th:value="${user.getUsername()}">
+                <input type="text" name="username" th:id="username" th:value="${user.getFirstname()}">
             </p>
             <p>
-                <label th:for="profession">Profession</label>
-                <input type="text" name="profession" th:id="profession" th:value="${user.getProfession()}"><br/>
+                <label th:for="lastname">Last Name</label>
+                <input type="text" name="lastname" th:id="lastname" th:value="${user.getLastname()}"><br/>
             </p>
             <p>
                 <label th:for="age">age</label>
                 <input type="text" name="age" th:id="age" th:value="${user.getAge()}"><br/>
+            </p>
+            <p>
+                <label th:for="username">Email</label>
+                <input type="text" name="username" th:id="username" th:value="${user.getUsername()}"><br/>
             </p>
             <p>
                 <label th:for="password">password</label>

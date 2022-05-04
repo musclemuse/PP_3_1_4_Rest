@@ -1,4 +1,5 @@
 package ru.kata.spring.boot_security.demo.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,32 +11,35 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
-@Data
+
 @Entity
 @Table(name = "users")
+@Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "firstname")
+    private String firstname;
 
     @Column
     private String password;
 
-    @Column
-    private String profession;
+    @Column(name = "lastname")
+    private String lastname;
 
     @Column
     private Integer age;
+
+    @Column(name = "username")
+    private String username;
 
     @ManyToMany
     @JoinTable(name = "joint_roles",
@@ -43,10 +47,14 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles = new ArrayList<>();
 
-    public User(String name, String profession, Integer age) {
-        this.username = name;
-        this.profession = profession;
+    public User() {
+    }
+
+    public User(String firstname, String lastname, Integer age, String username) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.age = age;
+        this.username = username;
     }
 
     @Override
@@ -54,6 +62,15 @@ public class User implements UserDetails {
         return getRoles();
     }
 
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
 
 
     @Override

@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,8 +42,10 @@ public class MainController {
     }
 
     @GetMapping(value = "/index")
-    public String allUsers(Model model) {
+    public String allUsers(@AuthenticationPrincipal org.springframework.security.core.userdetails.User user, Model model) {
         model.addAttribute("users", userService.listOfAllUsers());
+        model.addAttribute("user", userService.getUserByUsername(user.getUsername()));
+        model.addAttribute("roles", roleService.getAllRoles());
         return "index";
     }
 
