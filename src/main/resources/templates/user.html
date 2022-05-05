@@ -24,6 +24,8 @@
 
 <body>
 
+
+<!--                НАВБАР-->
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
 
@@ -41,34 +43,36 @@
     </div>
 </nav>
 
+<!--             ПАНЕЛЬ СЛЕВА + ТАБЛИЦА-->
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                        <a class="nav-link active text white" aria-current="page" href="/index">
+                            <span data-feather="home"></span>
+                            Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text white" href="/user" aria-current="page">
+                            <span data-feather="file"></span>
+                            User
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-<div class="row pt-2" style="margin-right: 10px;">
-    <div class="col-2 fixed-left">
-        <div >
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item" >
-                    <a href="/index" class="nav-link link-dark">
-                        <svg class="bi me-2" width="16" height="16"></svg>
-                        Admin
-                    </a>
-                </li>
-                <li class="nav-item bg-primary text-white">
-                    <a href="/user" class="nav-link active" aria-current="page">
-                        <svg class="bi me-2" width="16" height="16"></svg>
-                        User
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<!--        ТАБЛИЦА-->
 
-    <div class="col-10 bg-light">
-        <h1>User information page</h1>
-        <div class="pr-3">
-            <h4 style="padding: 10px;">About user</h4>
+
+        <main class="col-10">
+            <h2>User information page</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
-                    <thead>
+                    <thead> About user
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
@@ -90,9 +94,13 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </main>
     </div>
 </div>
+
+
+
+
 
 </body>
 </html>
