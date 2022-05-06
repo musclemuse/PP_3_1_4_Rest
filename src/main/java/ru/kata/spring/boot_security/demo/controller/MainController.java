@@ -31,9 +31,9 @@ public class MainController {
 
     @GetMapping("/user")
     public String userInfo(Principal principal, Model model) {
-        User user = userService.getUserByUsername(principal.getName());
+        User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
-        return "user" ;
+        return "user";
     }
 
     @GetMapping("/admin")
@@ -44,30 +44,15 @@ public class MainController {
     @GetMapping(value = "/index")
     public String allUsers(@AuthenticationPrincipal org.springframework.security.core.userdetails.User user, Model model) {
         model.addAttribute("users", userService.listOfAllUsers());
-        model.addAttribute("user", userService.getUserByUsername(user.getUsername()));
+        model.addAttribute("user", userService.findByUsername(user.getUsername()));
         model.addAttribute("roles", roleService.getAllRoles());
         return "index";
-    }
-
-    @RequestMapping(value = "/addNewUser")
-    public String addNewUser(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        return "user-info";
     }
 
     @RequestMapping(value = "/saveUser")
     public String saveUser(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/index";
-
-    }
-
-    @RequestMapping(value = "updateInfo")
-    public String updateUser(@RequestParam("id") int id, Model model) {
-        model.addAttribute("roles", roleService.getAllRoles());
-        model.addAttribute("user", userService.getUserById(id));
-        return "user-update";
     }
 
     @RequestMapping(value = "updateUser")
@@ -81,4 +66,5 @@ public class MainController {
         userService.removeUserById(id);
         return "redirect:/index";
     }
+
 }

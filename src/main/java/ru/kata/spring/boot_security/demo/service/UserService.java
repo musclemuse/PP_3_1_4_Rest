@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -19,8 +20,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
-
-
     private final UserRepository userRepository;
 
     @Autowired
@@ -48,28 +47,19 @@ public class UserService implements UserDetailsService {
         return userRepository.saveAndFlush(user);
     }
 
-
     public void removeUserById(long id) {
         userRepository.deleteById(id);
     }
-
 
     public User update(User user) {
         return userRepository.saveAndFlush(user);
     }
 
-
-    public User getUserById(long id) {
-        return userRepository.getById(id);
-    }
-
-
     public List<User> listOfAllUsers() {
         return userRepository.findAll();
     }
 
-
-    public User getUserByUsername(String name) {
+    public User findByUsername(String name) {
         return userRepository.findByUsername(name);
     }
 }

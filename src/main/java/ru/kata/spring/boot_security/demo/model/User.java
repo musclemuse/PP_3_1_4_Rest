@@ -12,13 +12,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
-
-@Entity
-@Table(name = "users")
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "users")
 
 public class User implements UserDetails {
 
@@ -26,16 +25,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firstname")
+    @Column
     private String firstname;
 
-    @Column
+    @Column (name = "password")
     private String password;
 
-    @Column(name = "lastname")
+    @Column (name = "lastname")
     private String lastname;
 
-    @Column
+    @Column (name="age")
     private Integer age;
 
     @Column(name = "username")
@@ -46,16 +45,6 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles = new ArrayList<>();
-
-    public User() {
-    }
-
-    public User(String firstname, String lastname, Integer age, String username) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.age = age;
-        this.username = username;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -71,7 +60,6 @@ public class User implements UserDetails {
     public String getUsername() {
         return username;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {

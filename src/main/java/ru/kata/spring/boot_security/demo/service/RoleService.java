@@ -21,6 +21,6 @@ public class RoleService {
     private EntityManager entityManager;
 
     public List<Role> getAllRoles() {
-        return entityManager.createQuery("select role from Role role ", Role.class).getResultList();
+        return entityManager.createQuery("select r from Role r ", Role.class).getResultList();
     }
 }
