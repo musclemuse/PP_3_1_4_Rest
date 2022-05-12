@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,22 +30,26 @@ public class User implements UserDetails {
     @Column
     private String firstname;
 
-    @Column (name = "password")
+    @Column
     private String password;
 
-    @Column (name = "lastname")
+    @Column
     private String lastname;
 
-    @Column (name="age")
+    @Column
     private Integer age;
 
-    @Column(name = "username")
+    @Column
     private String username;
 
     @ManyToMany
     @JoinTable(name = "joint_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id"
+    )
     private Collection<Role> roles = new ArrayList<>();
 
     @Override
