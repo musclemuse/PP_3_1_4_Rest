@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--    <link href="webjars/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">-->
-    <!-- Bootstrap CSS (Cloudflare CDN) -->
+<!--     Bootstrap CSS (Cloudflare CDN)-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css"
           integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g=="
           crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -16,13 +15,14 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"
             integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
             crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <title>Index</title>
-</head>
 
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin panel</title>
+</head>
 <body>
+
 <!--================================NAVBAR===============================-->
 
 <nav class="navbar navbar-dark bg-dark">
@@ -94,7 +94,7 @@
             <!-- =========================ГЛ ТАБЛИЦА=========================-->
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <table class="table table-striped table-hover" id="mainTableWithUsers">
+                    <table class="table table-striped table-hover" id="usersTable">
                         <thead> Users table
                         <tr>
                             <th>ID</th>
@@ -116,43 +116,43 @@
 
                 <!-- =========================CREATE USER ВКЛАДКА=========================-->
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <form class="col align-self-center " th:action="@{saveUser}" method="POST">
+                    <form class="col align-self-center " id="addNewUser">
                         <div class="form-group">
-                            <label for="firstnameNew" class="col-form-label">First name</label>
-                            <input type="text" class="form-control" id="firstnameNew"
+                            <label for="AddFirstname" class="col-form-label">First name</label>
+                            <input type="text" class="form-control" id="AddFirstname"
                                    name="firstname" placeholder="First name">
                         </div>
 
                         <div class="form-group">
-                            <label for="lastnameNew" class="col-form-label">Last name</label>
-                            <input type="text" class="form-control" id="lastnameNew"
+                            <label for="AddLastname" class="col-form-label">Last name</label>
+                            <input type="text" class="form-control" id="AddLastname"
                                    name="lastname" placeholder="Last name">
                         </div>
 
                         <div class="form-group">
-                            <label for="ageNew" class="col-form-label">Age</label>
-                            <input type="number" class="form-control" id="ageNew"
+                            <label for="AddAge" class="col-form-label">Age</label>
+                            <input type="number" class="form-control" id="AddAge"
                                    name="age" placeholder="Age">
                         </div>
 
                         <div class="form-group">
-                            <label for="usernameNew" class="col-form-label">Email</label>
-                            <input type="text" class="form-control" id="usernameNew"
+                            <label for="AddUsername" class="col-form-label">Email</label>
+                            <input type="text" class="form-control" id="AddUsername"
                                    name="username" placeholder="Email">
                         </div>
 
                         <div class="form-group">
-                            <label for="passwordNew" class="col-form-label">Password</label>
-                            <input type="text" class="form-control" id="passwordNew"
+                            <label for="AddPassword" class="col-form-label">Password</label>
+                            <input type="text" class="form-control" id="AddPassword"
                                    name="password" placeholder="Password">
                         </div>
 
                         <div class="form-group">
-                            <label for="roleNew" class="col-form-label">Roles</label>
-                            <select multiple class="form-control" id="roleNew" name="role">
-                                <div th:each="role: ${roles}">
-                                    <option th:text="${role.getName.substring(5)}"></option>
-                                </div>
+                            <label for="AddRole" class="col-form-label">Roles</label>
+                            <select multiple class="form-control" id="AddRole" name="role">
+<!--                                <div th:each="role: ${roles}">-->
+<!--                                    <option th:text="${role.getName.substring(5)}"></option>-->
+<!--                                </div>-->
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Create User</button>
@@ -317,14 +317,14 @@
                                class="form-control" id="idDel"
                                readonly/>
 
-                        <label for="usernameDel"><b>Username</b></label>
+                        <label for="firstnameDel"><b>Username</b></label>
                         <input type="text"
-                               class="form-control" id="usernameDel"
+                               class="form-control" id="firstnameDel"
                                readonly/>
 
-                        <label for="surnameDel"><b>Surname</b></label>
+                        <label for="lastnameDel"><b>Surname</b></label>
                         <input type="text"
-                               class="form-control" id="surnameDel"
+                               class="form-control" id="lastnameDel"
                                readonly/>
 
                         <label for="ageDel"><b>Age</b></label>
@@ -332,9 +332,9 @@
                                class="form-control" id="ageDel"
                                readonly/>
 
-                        <label for="emailDel"><b>Email</b></label>
+                        <label for="usernameDel"><b>Email</b></label>
                         <input type="text"
-                               class="form-control" id="emailDel"
+                               class="form-control" id="usernameDel"
                                readonly/>
 
                         <label for="passwordDel"><b>Password</b></label>
@@ -343,9 +343,10 @@
 
                         <label for="deleteRoles">Roles</label>
                         <select class="form-control" multiple size="2"
-                                id="deleteRoles">
+                                id="deleteRoles" >
                             <option value="1">ROLE_ADMIN</option>
                             <option value="2">ROLE_USER</option>
+                            readonly
                         </select>
 
                     </div>
@@ -354,10 +355,9 @@
                         <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">Close
                         </button>
-                        <button type="submit" class="btn btn-danger"
-                                id="btn-delete">
-                            Delete
-                        </button>
+                        <form id="deleteUser">
+                            <input type="submit" class="btn btn-primary" value="Delete" id="btn-delete"/>
+                        </form>
                     </div>
                 </form>
             </div>
@@ -366,36 +366,35 @@
 </div>
 
 
-<!--форма заполнения нового юзера и две кнопки-->
-<div class="container-fluid">
-    <div class="d-flex justify-content-center">
+<!--&lt;!&ndash;форма заполнения нового юзера и две кнопки&ndash;&gt;-->
+<!--<div class="container-fluid">-->
+<!--    <div class="d-flex justify-content-center">-->
 
-        <div class="form-group align-items-center">
-            <form id="defaultSomeForm" data-hidden=true style="display: none">
-                <input type="text" class="form-control" id="AddFirstname"
-                       name="firstname" placeholder="First name"><br>
-                <input type="text" class="form-control" id="AddLastname"
-                       name="lastname" placeholder="Last name"><br>
-                <input type="number" class="form-control" id="AddAge"
-                       name="age" placeholder="Age"><br>
-                <input type="text" class="form-control" id="AddUsername"
-                       name="username" placeholder="Email"><br>
-                <input type="text" class="form-control" id="AddPassword"
-                       name="password" placeholder="Password"><br>
-                <input type="text" class="form-control" id="AddRole"
-                       name="role" placeholder="Role"><br>
-                <button class="btn btn-primary mb-2" type="button" id="addNewUserButton">Add new user</button>
-            </form>
-            <div class="p-2">
-                <button class="btn btn-outline-success" id="SliderNewUserForm">Show panel</button>
-            </div>
-        </div>
+<!--        <div class="form-group align-items-center">-->
+<!--            <form id="defaultSomeForm" data-hidden=true style="display: none">-->
+<!--                <input type="text" class="form-control" id="AddFirstname"-->
+<!--                       name="firstname" placeholder="First name"><br>-->
+<!--                <input type="text" class="form-control" id="AddLastname"-->
+<!--                       name="lastname" placeholder="Last name"><br>-->
+<!--                <input type="number" class="form-control" id="AddAge"-->
+<!--                       name="age" placeholder="Age"><br>-->
+<!--                <input type="text" class="form-control" id="AddUsername"-->
+<!--                       name="username" placeholder="Email"><br>-->
+<!--                <input type="text" class="form-control" id="AddPassword"-->
+<!--                       name="password" placeholder="Password"><br>-->
+<!--                <input type="text" class="form-control" id="AddRole"-->
+<!--                       name="role" placeholder="Role"><br>-->
+<!--                <button class="btn btn-primary mb-2" type="button" id="addNewUserButton">Add new user</button>-->
+<!--            </form>-->
+<!--            <div class="p-2">-->
+<!--                <button class="btn btn-outline-success" id="SliderNewUserForm">Show panel</button>-->
+<!--            </div>-->
+<!--        </div>-->
 
-    </div>
-</div>
+<!--    </div>-->
+<!--</div>-->
 
 
 <script async th:src="@{app.js}"></script>
-<!--<script th:src="@{test.js}"></script>-->
 </body>
 </html>
