@@ -1,13 +1,36 @@
 // // ЗАПОЛНЕНИЕ ТАБЛИЦЫ ЮЗЕРОВ ---- !!!добавить РОЛИ
+// $(async function () {
+//     await getTableWithUsers();
+//
+// })
 
-let table = $('#usersTable tbody')
+const userFetchService = {
+    head: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Referer': null
+    },
+    findAllUsers: async () => await fetch('http://localhost:8080/api/users/'),
+    addNewUser: async (user) => await fetch('api/users', {method: 'POST', headers: userFetchService.head, body: JSON.stringify({
 
-fetch("http://localhost:8080/api/users/")
-    .then(res => res.json())
-    .then(users => {
+            'firstname': addFirstname.value,
+            'lastname': addLastname.value,
+            'age': addAge.value,
+            'password': addPassword.value,
+            'username': addUsername.value,
+            // 'role': role.value
+        })})
+    }
 
-        users.forEach(user => {
-            let tableFilling = `$(
+
+function getTableWithUsers() {
+let table = $('#usersTable tbody');
+     userFetchService.findAllUsers()
+        .then(res => res.json())
+        .then(users => {
+
+            users.forEach(user => {
+                let tableFilling = `$(
                         <tr>
                             <td>${user.id}</td>
                             <td>${user.firstname}</td>
@@ -19,9 +42,23 @@ fetch("http://localhost:8080/api/users/")
                            <td><button id="deleteModalOpen" data-bs-target="#deleteModal" class="btnDelete btn btn-danger" id="deleteUser">Delete</button></td>
                         </tr>
                 )`;
-            table.append(tableFilling);
+                table.append(tableFilling);
+            })
         })
-    })
+
+}
+
+getTableWithUsers()
+
+
+
+// fetch("http://localhost:8080/api/users/")
+//     .then(res => res.json())
+//     .then(users => {
+//         users.forEach(user => {
+//             showUser(user, usersTable)
+//         })
+//     })
 
 
 // let usersTable = document.querySelector('#usersTable')
