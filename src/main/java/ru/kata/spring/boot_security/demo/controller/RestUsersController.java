@@ -49,7 +49,8 @@ public class RestUsersController {
     public ResponseEntity<User> apiUpdateUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.add(user), HttpStatus.OK);
     }
-@DeleteMapping("/users/{id}")
+
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<User> apiDeleteUser(@PathVariable("id") long id) {
         userService.removeUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
