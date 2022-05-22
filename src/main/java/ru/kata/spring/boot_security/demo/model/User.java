@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 @Data
 @Builder
@@ -50,7 +51,7 @@ public class User implements UserDetails {
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id"
     )
-    private Collection<Role> roles = new ArrayList<>();
+    private Set<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

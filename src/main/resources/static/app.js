@@ -1,9 +1,3 @@
-// // ЗАПОЛНЕНИЕ ТАБЛИЦЫ ЮЗЕРОВ ---- !!!добавить РОЛИ
-// $(async function () {
-//     await getTableWithUsers();
-//
-// })
-
 const userFetchService = {
     head: {
         'Accept': 'application/json',
@@ -11,20 +5,12 @@ const userFetchService = {
         'Referer': null
     },
     findAllUsers: async () => await fetch('http://localhost:8080/api/users/'),
-    addNewUser: async (user) => await fetch('api/users', {method: 'POST', headers: userFetchService.head, body: JSON.stringify({
-
-            'firstname': addFirstname.value,
-            'lastname': addLastname.value,
-            'age': addAge.value,
-            'password': addPassword.value,
-            'username': addUsername.value,
-            // 'role': role.value
-        })})
-    }
+}
 
 
 function getTableWithUsers() {
 let table = $('#usersTable tbody');
+
      userFetchService.findAllUsers()
         .then(res => res.json())
         .then(users => {
@@ -37,9 +23,9 @@ let table = $('#usersTable tbody');
                             <td>${user.lastname}</td>
                             <td>${user.age}</td>
                             <td>${user.username}</td>
-                            <td> ${user.role} </td> 
-                           <td><button id="buttonEditModalOpen" data-bs-target="#editModal" class="btnEdit btn btn-info" data-bs-toggle="modal" >Edit</button></td>
-                           <td><button id="deleteModalOpen" data-bs-target="#deleteModal" class="btnDelete btn btn-danger" id="deleteUser">Delete</button></td>
+                            <td> ${user.role} </td>
+                           <td><button data-bs-toggle="modal" id="buttonEditModalOpen" data-bs-target="#editModal" class="btnEdit btn btn-info" data-bs-toggle="modal" >Edit</button></td>
+                           <td><button data-bs-toggle="modal" id="deleteModalOpen" data-bs-target="#deleteModal" class="btnDelete btn btn-danger" >Delete</button></td>
                         </tr>
                 )`;
                 table.append(tableFilling);
@@ -60,7 +46,7 @@ getTableWithUsers()
 //         })
 //     })
 
-
+// // //
 // let usersTable = document.querySelector('#usersTable')
 //
 // function showUser(user, tableFilling) {
@@ -92,7 +78,7 @@ getTableWithUsers()
 //     tr.append(td)
 //     td = document.createElement('td')
 //     td.innerHTML += `
-//             <button id="deleteModalOpen" data-bs-target="#deleteModal" class="btnDelete btn btn-danger" id="deleteUser">Delete</button>
+//             <button id="deleteModalOpen" data-bs-target="#deleteModal" class="btnDelete btn btn-danger">Delete</button>
 //     `
 //     tr.append(td)
 //

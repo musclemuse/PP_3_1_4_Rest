@@ -57,12 +57,6 @@ public class RestUsersController {
         //!!!ПРОВЕРИТЬ РАБОТУ
     }
 
-//    @GetMapping("/user")
-//    public String userInfo(Principal principal, Model model) {
-//        User user = userService.findByUsername(principal.getName());
-//        model.addAttribute("user", user);
-//        return "user";
-//    }
 
     @GetMapping("/roles")
     public List<Role> getAllRoles() {
