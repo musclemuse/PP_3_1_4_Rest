@@ -2,15 +2,13 @@ let deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'), {
     keyboard: false
 })
 
-const deleteUserForm = document.querySelector('#deleteModal')
 // const inputRolesDelete = document.querySelector('#deleteRoles')
-const postDeleteUser = document.querySelector('#postDeleteUser')
+const submitDelete = document.querySelector('#submitDelete')
 const idDelete = document.querySelector('#idDelete')
 const firstNameDelete = document.querySelector('#firstnameDelete')
 const lastnameDelete = document.querySelector('#lastnameDelete')
 const ageDelete = document.querySelector('#ageDelete')
 const usernameDelete = document.querySelector('#usernameDelete')
-const passwordDelete = document.querySelector('#passwordDelete')
 
 
 const eventButton = (element, event, selector, handler) => {
@@ -31,7 +29,6 @@ eventButton(document, 'click', '#deleteModalOpen', e => {
     fetch("http://localhost:8080/api/users/" + id)
         .then(res => res.json())
         .then(user => {
-            // getTableWithUsers()
             idDelete.value = user.id
             usernameDelete.value = user.username
             firstNameDelete.value = user.firstname
@@ -41,9 +38,9 @@ eventButton(document, 'click', '#deleteModalOpen', e => {
 
 })
 
-postDeleteUser.addEventListener('submit', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+submitDelete.addEventListener('submit', (e) => {
+    // e.preventDefault();
+    // e.stopPropagation();
     let id = idDelete.value
     fetch("http://localhost:8080/api/users/" + id,{
         method: 'DELETE'
@@ -57,18 +54,3 @@ postDeleteUser.addEventListener('submit', (e) => {
             })
         })
 })
-
-// deleteUserForm.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-//     fetch('http://localhost:8080/api/users/' + id, {
-//         method: 'DELETE'
-//     })
-//         .then(res => res.json())
-//         .then(res => {
-//             removeUser(currentUserId);
-//             deleteUserForm.removeEventListener('submit', () => {
-//             });
-//             $("#deleteModal").ariaModal("hide")
-//         })
-// })

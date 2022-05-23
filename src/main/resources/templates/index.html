@@ -154,11 +154,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="AddRole" class="col-form-label">Roles</label>
-                            <select multiple class="form-control" id="AddRole" name="role">
-                                <!--                                <div th:each="role: ${roles}">-->
-                                <!--                                    <option th:text="${role.getName.substring(5)}"></option>-->
-                                <!--                                </div>-->
+                            <label for="AddRoles" class="col-form-label">Roles</label>
+                            <select class="form-select" size="2" multiple aria-label="multiple select example"
+                                    name="inputRoles" id="AddRoles">
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Create User</button>
@@ -172,73 +170,7 @@
 </div>
 
 
-<!-- =========================DELETE MODAL 2222222=========================-->
 
-<!--<div class="modal fade" tabindex="-1" id="deleteModal">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <div class="modal-title"><b>Delete User</b></div>-->
-<!--                <button type="button" class="close"-->
-<!--                        data-dismiss="modal">x-->
-<!--                </button>-->
-<!--            </div>-->
-
-<!--            <div class="modal-body">-->
-<!--                <form class="deleteFormModal">-->
-<!--                    <div class="col-md-6 text-center m-auto">-->
-<!--                        <label for="idDel"><b>ID</b></label>-->
-<!--                        <input type="text"-->
-<!--                               class="form-control" id="idDel"-->
-<!--                               readonly/>-->
-
-<!--                        <label for="usernameDel"><b>Username</b></label>-->
-<!--                        <input type="text"-->
-<!--                               class="form-control" id="usernameDel"-->
-<!--                               readonly/>-->
-
-<!--                        <label for="surnameDel"><b>Surname</b></label>-->
-<!--                        <input type="text"-->
-<!--                               class="form-control" id="surnameDel"-->
-<!--                               readonly/>-->
-
-<!--                        <label for="ageDel"><b>Age</b></label>-->
-<!--                        <input type="number"-->
-<!--                               class="form-control" id="ageDel"-->
-<!--                               readonly/>-->
-
-<!--                        <label for="emailDel"><b>Email</b></label>-->
-<!--                        <input type="text"-->
-<!--                               class="form-control" id="emailDel"-->
-<!--                               readonly/>-->
-
-<!--                        <label for="passwordDel"><b>Password</b></label>-->
-<!--                        <input type="text" class="form-control" id="passwordDel"-->
-<!--                               readonly/>-->
-
-<!--                        <label for="deleteRoles">Roles</label>-->
-<!--                        <select class="form-control" multiple size="2"-->
-<!--                                id="deleteRoles">-->
-<!--                            <option value="1">ROLE_ADMIN</option>-->
-<!--                            <option value="2">ROLE_USER</option>-->
-<!--                        </select>-->
-
-<!--                    </div>-->
-
-<!--                    <div class="modal-footer">-->
-<!--                        <button type="button" class="btn btn-secondary"-->
-<!--                                data-dismiss="modal">Close-->
-<!--                        </button>-->
-<!--                        <button type="submit" class="btn btn-danger"-->
-<!--                                id="btn-delete">-->
-<!--                            Delete-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 
 <!-- =========================DELETE MODAL=========================-->
@@ -253,36 +185,29 @@
             <div class="modal-body">
                 <br>
                 <label for="idDelete" class="col-form-label">ID</label>
-                <input type="text" class="form-control" id="idDelete"
-                       readonly="readonly">
+                <input type="text" class="form-control" id="idDelete" readonly="readonly">
                 </br>
-
                 <br>
                 <label for="firstnameDelete" class="col-form-label">First name</label>
-                <input type="text" class="form-control" id="firstnameDelete"
-                       readonly="readonly">
+                <input type="text" class="form-control" id="firstnameDelete" readonly="readonly">
                 </br>
-
                 <br>
                 <label for="lastnameDelete" class="col-form-label">Last name</label>
-                <input type="text" class="form-control" id="lastnameDelete"
-                       readonly="readonly">
+                <input type="text" class="form-control" id="lastnameDelete" readonly="readonly">
                 </br>
-
                 <br>
                 <label for="ageDelete" class="col-form-label">Age</label>
-                <input type="number" class="form-control" id="ageDelete"
-                       readonly="readonly">
+                <input type="number" class="form-control" id="ageDelete" readonly="readonly">
                 </br>
-
                 <br>
                 <label for="usernameDelete" class="col-form-label">Email</label>
                 <input type="text" class="form-control" id="usernameDelete" readonly="readonly">
                 </br>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form id="postDeleteUser">
+                <form id="submitDelete">
                     <input type="submit" class="btn btn-danger" value="Delete"/>
                 </form>
 
@@ -293,37 +218,63 @@
 </div>
 
 
-<!--&lt;!&ndash;форма заполнения нового юзера и две кнопки&ndash;&gt;-->
-<!--<div class="container-fluid">-->
-<!--    <div class="d-flex justify-content-center">-->
+<!-- =========================EDIT MODAL=========================-->
+<div class="modal" id="editModal">
 
-<!--        <div class="form-group align-items-center">-->
-<!--            <form id="defaultSomeForm" data-hidden=true style="display: none">-->
-<!--                <input type="text" class="form-control" id="AddFirstname"-->
-<!--                       name="firstname" placeholder="First name"><br>-->
-<!--                <input type="text" class="form-control" id="AddLastname"-->
-<!--                       name="lastname" placeholder="Last name"><br>-->
-<!--                <input type="number" class="form-control" id="AddAge"-->
-<!--                       name="age" placeholder="Age"><br>-->
-<!--                <input type="text" class="form-control" id="AddUsername"-->
-<!--                       name="username" placeholder="Email"><br>-->
-<!--                <input type="text" class="form-control" id="AddPassword"-->
-<!--                       name="password" placeholder="Password"><br>-->
-<!--                <input type="text" class="form-control" id="AddRole"-->
-<!--                       name="role" placeholder="Role"><br>-->
-<!--                <button class="btn btn-primary mb-2" type="button" id="addNewUserButton">Add new user</button>-->
-<!--            </form>-->
-<!--            <div class="p-2">-->
-<!--                <button class="btn btn-outline-success" id="SliderNewUserForm">Show panel</button>-->
-<!--            </div>-->
-<!--        </div>-->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalBasicLabel">Edit user</h5>
+                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <br>
+                <label for="idEdit" class="col-form-label">ID</label>
+                <input type="text" class="form-control" id="idEdit" readonly="readonly">
+                </br>
+                <br>
+                <label for="firstnameEdit" class="col-form-label">First name</label>
+                <input type="text" class="form-control" id="firstnameEdit">
+                </br>
+                <br>
+                <label for="lastnameEdit" class="col-form-label">Last name</label>
+                <input type="text" class="form-control" id="lastnameEdit">
+                </br>
+                <br>
+                <label for="ageEdit" class="col-form-label">Age</label>
+                <input type="number" class="form-control" id="ageEdit">
+                </br>
+                <br>
+                <label for="usernameEdit" class="col-form-label">Email</label>
+                <input type="text" class="form-control" id="usernameEdit">
+                </br>
+                <br>
+                <label for="passwordEdit" class="col-form-label">Email</label>
+                <input type="text" class="form-control" id="passwordEdit">
+                </br>
+                <br>
+                <label for="rolesEdit" class="form-label fw-bold mb-0">Role</label>
+                <select class="form-select" size="2" multiple aria-label="multiple select example" name="inputRoles" id="rolesEdit">
+                </select>
+                </br>
 
-<!--    </div>-->
-<!--</div>-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form id="submitEdit">
+                    <input type="submit" class="btnEdit btn btn-info" value="Edit"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 
 <script async th:src="@{app.js}"></script>
 <script async th:src="@{addUser.js}"></script>
 <script async th:src="@{delete.js}"></script>
+<script async th:src="@{edit.js}"></script>
 </body>
 </html>

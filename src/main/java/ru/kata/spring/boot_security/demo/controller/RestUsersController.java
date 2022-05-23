@@ -54,9 +54,9 @@ public class RestUsersController {
     public ResponseEntity<User> apiDeleteUser(@PathVariable("id") long id) {
         userService.removeUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
-        //!!!ПРОВЕРИТЬ РАБОТУ
     }
 
+    //ROLES CONTROLLER
 
     @GetMapping("/roles")
     public List<Role> getAllRoles() {

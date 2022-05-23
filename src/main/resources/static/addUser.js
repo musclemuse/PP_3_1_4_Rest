@@ -5,6 +5,7 @@ const addLastname = document.querySelector('#AddLastname')
 const addPassword = document.querySelector('#AddPassword')
 const addUsername = document.querySelector('#AddUsername')
 const addAge = document.querySelector('#AddAge')
+const addRoles = document.querySelector('#AddRoles')
 
 addNewUser.addEventListener('submit', (e) => {
     // e.preventDefault()
@@ -19,7 +20,10 @@ addNewUser.addEventListener('submit', (e) => {
             'lastname': addLastname.value,
             'age': addAge.value,
             'password': addPassword.value,
-            'username': addUsername.value
+            'username': addUsername.value,
+            roles: [
+                addRoles.value
+            ]
         })
     })
         .then(res => res.json())
@@ -32,7 +36,7 @@ addNewUser.addEventListener('submit', (e) => {
             addFirstname.value = ''
             addLastname.value = ''
             addAge.value = ''
-            // addRole.value = ''
+            addRoles.value = ''
         })
 })
 
