@@ -10,7 +10,7 @@ fetch("http://localhost:8080/api/user/")
                             <td>${user.lastname}</td>
                             <td>${user.age}</td>
                             <td>${user.username}</td>
-                            <td>${getRoleForUser(user)}</td>
+                            <td>${user.roles.map(role => role.name === 'ROLE_USER' ? ' USER' : ' ADMIN')}</td>
             </tr>`
         tableUser.innerHTML = selectedUser
     })
