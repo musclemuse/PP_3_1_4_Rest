@@ -2,15 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<!--    &lt;!&ndash;     Bootstrap CSS (Cloudflare CDN)&ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css"-->
-<!--          integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g=="-->
-<!--          crossorigin="anonymous" referrerpolicy="no-referrer">-->
-
-<!--    &lt;!&ndash; Bootstrap Bundle JS (Cloudflare CDN) &ndash;&gt;-->
-<!--    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js"-->
-<!--            integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="-->
-<!--            crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -153,10 +144,10 @@
                                    name="password" placeholder="Password">
                         </div>
 
-                        <div class="form-group">
-                            <label for="AddRoles" class="col-form-label">Roles</label>
+                        <div>
+                            <label for="addRoles" class="form-label fw-bold mb-0">Role</label>
                             <select class="form-select" size="2" multiple aria-label="multiple select example"
-                                    name="inputRoles" id="AddRoles">
+                                    name="inputRoles" id="addRoles">
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Create User</button>
@@ -168,9 +159,6 @@
         </main>
     </div>
 </div>
-
-
-
 
 
 <!-- =========================DELETE MODAL=========================-->
@@ -186,27 +174,22 @@
                 <br>
                 <label for="idDelete" class="col-form-label">ID</label>
                 <input type="text" class="form-control" id="idDelete" readonly="readonly">
-                </br>
                 <br>
                 <label for="firstnameDelete" class="col-form-label">First name</label>
                 <input type="text" class="form-control" id="firstnameDelete" readonly="readonly">
-                </br>
                 <br>
                 <label for="lastnameDelete" class="col-form-label">Last name</label>
                 <input type="text" class="form-control" id="lastnameDelete" readonly="readonly">
-                </br>
                 <br>
                 <label for="ageDelete" class="col-form-label">Age</label>
                 <input type="number" class="form-control" id="ageDelete" readonly="readonly">
-                </br>
                 <br>
                 <label for="usernameDelete" class="col-form-label">Email</label>
                 <input type="text" class="form-control" id="usernameDelete" readonly="readonly">
-                </br>
+                <br>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <form id="submitDelete">
                     <input type="submit" class="btn btn-danger" value="Delete"/>
                 </form>
@@ -231,36 +214,30 @@
                 <br>
                 <label for="idEdit" class="col-form-label">ID</label>
                 <input type="text" class="form-control" id="idEdit" readonly="readonly">
-                </br>
                 <br>
                 <label for="firstnameEdit" class="col-form-label">First name</label>
                 <input type="text" class="form-control" id="firstnameEdit">
-                </br>
                 <br>
                 <label for="lastnameEdit" class="col-form-label">Last name</label>
                 <input type="text" class="form-control" id="lastnameEdit">
-                </br>
                 <br>
                 <label for="ageEdit" class="col-form-label">Age</label>
                 <input type="number" class="form-control" id="ageEdit">
-                </br>
                 <br>
                 <label for="usernameEdit" class="col-form-label">Email</label>
                 <input type="text" class="form-control" id="usernameEdit">
-                </br>
                 <br>
-                <label for="passwordEdit" class="col-form-label">Email</label>
+                <label for="passwordEdit" class="col-form-label">Password</label>
                 <input type="text" class="form-control" id="passwordEdit">
-                </br>
                 <br>
                 <label for="rolesEdit" class="form-label fw-bold mb-0">Role</label>
-                <select class="form-select" size="2" multiple aria-label="multiple select example" name="inputRoles" id="rolesEdit">
+                <select class="form-select" size="2" multiple aria-label="multiple select example" name="inputRoles"
+                        id="rolesEdit">
                 </select>
-                </br>
+                <br>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <form id="submitEdit">
                     <input type="submit" class="btnEdit btn btn-info" value="Edit"/>
                 </form>
@@ -269,7 +246,6 @@
     </div>
 
 </div>
-
 
 
 <script async th:src="@{app.js}"></script>

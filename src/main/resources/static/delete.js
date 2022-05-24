@@ -2,7 +2,6 @@ let deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'), {
     keyboard: false
 })
 
-// const inputRolesDelete = document.querySelector('#deleteRoles')
 const submitDelete = document.querySelector('#submitDelete')
 const idDelete = document.querySelector('#idDelete')
 const firstNameDelete = document.querySelector('#firstnameDelete')
@@ -20,11 +19,9 @@ const eventButton = (element, event, selector, handler) => {
 }
 
 
-//
 eventButton(document, 'click', '#deleteModalOpen', e => {
     const parentTr = e.target.parentNode.parentNode
      const id = parentTr.firstElementChild.innerHTML
-    // addRolesForSelectById(inputRolesDelete, id)
 
     fetch("http://localhost:8080/api/users/" + id)
         .then(res => res.json())
@@ -39,8 +36,7 @@ eventButton(document, 'click', '#deleteModalOpen', e => {
 })
 
 submitDelete.addEventListener('submit', (e) => {
-    // e.preventDefault();
-    // e.stopPropagation();
+
     let id = idDelete.value
     fetch("http://localhost:8080/api/users/" + id,{
         method: 'DELETE'

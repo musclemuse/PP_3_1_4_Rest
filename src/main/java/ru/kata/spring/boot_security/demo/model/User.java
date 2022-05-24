@@ -24,6 +24,15 @@ import java.util.Set;
 
 public class User implements UserDetails {
 
+    public User(Long id, String firstname, String password, String lastname, Integer age, String username) {
+        this.id = id;
+        this.firstname = firstname;
+        this.password = password;
+        this.lastname = lastname;
+        this.age = age;
+        this.username = username;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,13 +53,11 @@ public class User implements UserDetails {
     private String username;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    @JoinTable(name = "joint_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id"
     )
+
     private Set<Role> roles;
 
     @Override

@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import ru.kata.spring.boot_security.demo.model.Role;
@@ -13,7 +12,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
-import java.security.Principal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,14 +40,29 @@ public class RestUsersController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> apiAddNewUser(@RequestBody User user) {
+    public ResponseEntity<User> apiAddUser(@RequestBody User user,
+                                           @RequestParam(value = "inputRoles",
+                                                   required = false) Long[] inputRoles) {
+        Set<Role> roleHashSet = new HashSet<>();
+        for(Long i: inputRoles) {
+            roleHashSet.add(roleService.findById(i));
+        }
+        user.setRoles(roleHashSet);
         return new ResponseEntity<>(userService.add(user), HttpStatus.OK);
     }
 
-    @PutMapping("/users")
-    public ResponseEntity<User> apiUpdateUser(@RequestBody User user) {
+    @PatchMapping("/users")
+    public ResponseEntity<User> apiUpdateUser(@RequestBody User user,
+                                              @RequestParam(value = "inputRoles",
+                                                      required = false) Long[] inputRoles) {
+        Set<Role> roleHashSet = new HashSet<>();
+        for(Long i: inputRoles) {
+            roleHashSet.add(roleService.findById(i));
+        }
+        user.setRoles(roleHashSet);
         return new ResponseEntity<>(userService.add(user), HttpStatus.OK);
     }
+
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<User> apiDeleteUser(@PathVariable("id") long id) {

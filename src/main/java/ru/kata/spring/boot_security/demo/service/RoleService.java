@@ -23,4 +23,9 @@ public class RoleService {
     public List<Role> getAllRoles() {
         return entityManager.createQuery("select r from Role r ", Role.class).getResultList();
     }
+
+    public Role findById(long id) {
+        return roleRepository.findById(id);
+    }
+
 }

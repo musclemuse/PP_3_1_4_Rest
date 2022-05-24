@@ -4,7 +4,6 @@ let editModal = new bootstrap.Modal(document.getElementById('editModal'), {
 
 let usersTable = document.querySelector('#usersTable')
 
-// const inputRolesDelete = document.querySelector('#deleteRoles')
 const submitEdit = document.querySelector('#submitEdit')
 
 const idEdit = document.querySelector('#idEdit')
@@ -14,15 +13,16 @@ const ageEdit = document.querySelector('#ageEdit')
 const usernameEdit = document.querySelector('#usernameEdit')
 const passwordEdit = document.querySelector('#passwordEdit')
 
+const rolesEdit = document.querySelector('#rolesEdit')
+
 
 
 //
 eventButton(document, 'click', '#editModalOpen', e => {
-    // const parentTr = e.target.parentNode.parentNode
-    // const id = parentTr.firstElementChild.innerHTML
-    // addRolesForSelectById(inputRolesDelete, id)
     const parentTr = e.target.parentNode.parentNode
     const id = parentTr.firstElementChild.innerHTML
+    addRolesForSelect(rolesEdit)
+
 
     fetch("http://localhost:8080/api/users/" + id)
         .then(res => res.json())
@@ -39,15 +39,15 @@ eventButton(document, 'click', '#editModalOpen', e => {
 
 submitEdit.addEventListener('submit', (e) => {
     // e.preventDefault();
-    // e.stopPropagation();
-    // let id = idEdit.value
-    fetch("http://localhost:8080/api/users/" ,{
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Referer': null
-        },
+    e.stopPropagation();
+    let id = idEdit.value
+    let roleNames = getSelectValues(rolesEdit)
+
+    fetch("http://localhost:8080/api/users/" + '?inputRoles=' + roleNames, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
         body: JSON.stringify({
             'id': idEdit.value,
             'firstname': firstNameEdit.value,
@@ -61,7 +61,7 @@ submitEdit.addEventListener('submit', (e) => {
         .then(() => {
             editModal.hide()
             Array.from(usersTable.querySelectorAll('tr')).map(tr => {
-                if (tr.firstElementChild.innerHTML == id) {
+                if (tr.firstElementChild.innerHTML === id) {
                     let currentNode = tr.firstChild
                     currentNode.textContent = idEdit.value
                     currentNode = currentNode.nextSibling
@@ -72,9 +72,21 @@ submitEdit.addEventListener('submit', (e) => {
                     currentNode.textContent = ageEdit.value
                     currentNode = currentNode.nextSibling
                     currentNode.textContent = usernameEdit.value
-                    // currentNode = currentNode.nextSibling
-                    // getRoleForUserById(id, currentNode)
+                    currentNode = currentNode.nextSibling
+                    getRoleForUserById(id, currentNode)
                 }
             })
         })
 })
+
+function getRoleForUserById(id , node){
+    let res = ''
+    fetch('http://localhost:8080/api/users/'+id)
+        .then(res => res.json())
+        .then(user => {
+            user.roles.forEach(role => {
+                res += role.name.replace("ROLE_", "")
+            })
+            node.textContent = res
+        })
+}

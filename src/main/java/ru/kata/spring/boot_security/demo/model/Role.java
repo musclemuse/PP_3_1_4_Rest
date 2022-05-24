@@ -2,21 +2,17 @@ package ru.kata.spring.boot_security.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Set;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -28,22 +24,28 @@ public class Role implements GrantedAuthority {
     @Column
     private String name;
 
-    @Transient
+
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+
     @ManyToMany(mappedBy = "roles")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id"
     )
-    private Set<User> users;
+
+    private List<User> users;
 
     @Override
     public String getAuthority() {
-        return getName();
+        return name;
     }
 
     @Override
     public String toString() {
-        return name;
+        return name.replace("ROLE_", "");
     }
 }
-

@@ -7,7 +7,6 @@ const userFetchService = {
     findAllUsers: async () => await fetch('http://localhost:8080/api/users/'),
 }
 
-
 function getTableWithUsers() {
     let table = $('#usersTable tbody');
 
@@ -23,8 +22,8 @@ function getTableWithUsers() {
                             <td>${user.lastname}</td>
                             <td>${user.age}</td>
                             <td>${user.username}</td>
-                        <td>${user.roles.map(role => role.name === 'ROLE_USER' ? ' USER' : ' ADMIN')}</td>
-                           <td><button data-bs-toggle="modal" id="buttonEditModalOpen" data-bs-target="#editModal" class="btnEdit btn btn-info">Edit</button></td>
+                            <td>${getRoleForUser(user)}</td>
+                           <td><button data-bs-toggle="modal" id="editModalOpen" data-bs-target="#editModal" class="btnEdit btn btn-info">Edit</button></td>
                            <td><button data-bs-toggle="modal" id="deleteModalOpen" data-bs-target="#deleteModal" class="btnDelete btn btn-danger">Delete</button></td>
                         </tr>
                 )`;
@@ -35,6 +34,15 @@ function getTableWithUsers() {
 }
 
 getTableWithUsers()
+
+function getRoleForUser(user){
+    let roles = ''
+    user.authorities.forEach(role => {
+        roles += role.name.replace("ROLE_", "")
+    })
+    return roles
+}
+
 
 
 

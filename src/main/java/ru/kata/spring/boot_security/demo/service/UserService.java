@@ -13,14 +13,15 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -44,15 +45,12 @@ public class UserService implements UserDetailsService {
     //методы CRUD
 
     public User add(User user) {
-        return userRepository.saveAndFlush(user);
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 
     public void removeUserById(long id) {
         userRepository.deleteById(id);
-    }
-
-    public User update(User user) {
-        return userRepository.saveAndFlush(user);
     }
 
     public List<User> listOfAllUsers() {
@@ -66,4 +64,6 @@ public class UserService implements UserDetailsService {
     public User findById(long id) {
         return userRepository.findById(id);
     }
+
+
 }

@@ -11,11 +11,9 @@ import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
-import java.util.List;
 
 
 @Controller
-//@RequestMapping(value = "/admin")
 public class MainController {
 
     private final UserService userService;
@@ -56,7 +54,7 @@ public class MainController {
 
     @RequestMapping(value = "updateUser")
     public String updateUser(@ModelAttribute("user") User user) {
-        userService.update(user);
+        userService.add(user);
         return "redirect:/index";
     }
 
