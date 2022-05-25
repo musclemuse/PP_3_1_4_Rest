@@ -9,7 +9,7 @@ const addRoles = document.querySelector('#addRoles')
 
 
 addNewUser.addEventListener('submit', (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     let roleNames = getSelectValues(addRoles)
 
     fetch("http://localhost:8080/api/users/" + '?inputRoles=' + roleNames, {

@@ -128,7 +128,7 @@
 
                         <div class="form-group">
                             <label for="AddAge" class="col-form-label">Age</label>
-                            <input type="number" class="form-control" id="AddAge"
+                            <input type="number" min="1" step="1" class="form-control" id="AddAge"
                                    name="age" placeholder="Age">
                         </div>
 
@@ -147,7 +147,7 @@
                         <div>
                             <label for="addRoles" class="form-label fw-bold mb-0">Role</label>
                             <select class="form-select" size="2" multiple aria-label="multiple select example"
-                                    name="inputRoles" id="addRoles">
+                                    name="inputRoles" id="addRoles" required>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Create User</button>
@@ -222,17 +222,17 @@
                 <input type="text" class="form-control" id="lastnameEdit">
                 <br>
                 <label for="ageEdit" class="col-form-label">Age</label>
-                <input type="number" class="form-control" id="ageEdit">
+                <input type="number" min="1" step="1" class="form-control" id="ageEdit">
                 <br>
                 <label for="usernameEdit" class="col-form-label">Email</label>
                 <input type="text" class="form-control" id="usernameEdit">
                 <br>
                 <label for="passwordEdit" class="col-form-label">Password</label>
-                <input type="text" class="form-control" id="passwordEdit">
+                <input type="text" class="form-control" id="passwordEdit" readonly="readonly">
                 <br>
                 <label for="rolesEdit" class="form-label fw-bold mb-0">Role</label>
                 <select class="form-select" size="2" multiple aria-label="multiple select example" name="inputRoles"
-                        id="rolesEdit">
+                        id="rolesEdit" required>
                 </select>
                 <br>
 

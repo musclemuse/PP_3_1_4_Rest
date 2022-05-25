@@ -32,7 +32,7 @@ eventButton(document, 'click', '#editModalOpen', e => {
             lastnameEdit.value = user.lastname
             ageEdit.value = user.age
             usernameEdit.value = user.username
-            passwordEdit.value = user.password
+            passwordEdit.value = ' '
         })
 
 })
@@ -72,6 +72,8 @@ submitEdit.addEventListener('submit', (e) => {
                     currentNode.textContent = ageEdit.value
                     currentNode = currentNode.nextSibling
                     currentNode.textContent = usernameEdit.value
+                    currentNode = currentNode.nextSibling
+                    currentNode.textContent = passwordEdit.value
                     currentNode = currentNode.nextSibling
                     getRoleForUserById(id, currentNode)
                 }

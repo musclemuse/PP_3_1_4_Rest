@@ -44,7 +44,7 @@ public class RestUsersController {
                                            @RequestParam(value = "inputRoles",
                                                    required = false) Long[] inputRoles) {
         Set<Role> roleHashSet = new HashSet<>();
-        for(Long i: inputRoles) {
+        for (Long i : inputRoles) {
             roleHashSet.add(roleService.findById(i));
         }
         user.setRoles(roleHashSet);
@@ -56,7 +56,7 @@ public class RestUsersController {
                                               @RequestParam(value = "inputRoles",
                                                       required = false) Long[] inputRoles) {
         Set<Role> roleHashSet = new HashSet<>();
-        for(Long i: inputRoles) {
+        for (Long i : inputRoles) {
             roleHashSet.add(roleService.findById(i));
         }
         user.setRoles(roleHashSet);
