@@ -92,3 +92,13 @@ function getRoleForUserById(id , node){
             node.textContent = res
         })
 }
+
+function validateEditForm()
+{
+    let x=document.forms["submitNameEdit"]["inputRoles"].value;
+    if (x==null || x=="")
+    {
+        alert("Необходимо выбрать Роли!");
+        return false;
+    }
+}

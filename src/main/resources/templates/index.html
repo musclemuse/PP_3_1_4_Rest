@@ -203,7 +203,7 @@
 
 <!-- =========================EDIT MODAL=========================-->
 <div class="modal" id="editModal">
-
+    <form id="submitEdit" name="submitNameEdit" onsubmit="validateEditForm()">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -230,6 +230,7 @@
                 <label for="passwordEdit" class="col-form-label">Password</label>
                 <input type="text" class="form-control" id="passwordEdit" readonly="readonly">
                 <br>
+
                 <label for="rolesEdit" class="form-label fw-bold mb-0">Role</label>
                 <select class="form-select" size="2" multiple aria-label="multiple select example" name="inputRoles"
                         id="rolesEdit" required>
@@ -238,13 +239,13 @@
 
             </div>
             <div class="modal-footer">
-                <form id="submitEdit">
+
                     <input type="submit" class="btnEdit btn btn-info" value="Edit"/>
-                </form>
+
             </div>
         </div>
     </div>
-
+    </form>
 </div>
 
 
